@@ -3,10 +3,7 @@ package com.example.nanatechdojo_app.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-data class AvCategory(
-    val success: Boolean,
-    val response: Response
-) {
+data class AvCategory(val success: Boolean, val response: Response) {
     data class Response(
         val categories: List<Category>
     ) {

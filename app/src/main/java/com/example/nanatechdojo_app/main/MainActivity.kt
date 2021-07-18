@@ -30,8 +30,11 @@ class MainActivity : AppCompatActivity() {
         scope.launch {
             try {
                 val avCategories = service.getAvCategories()
-                val text = findViewById<TextView>(R.id.textView)
-                text.text =avCategories.toString()
+                val avCollections = service.getAvCollections()
+                val text1 = findViewById<TextView>(R.id.textView1)
+                val text2 = findViewById<TextView>(R.id.textView2)
+                text1.text = avCategories.toString()
+                text2.text = avCollections.toString()
             } catch(e:Exception) {
                 print("はずれ")
             }

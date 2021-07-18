@@ -1,6 +1,7 @@
 package com.example.nanatechdojo_app
 
 import com.example.nanatechdojo_app.model.AvCategory
+import com.example.nanatechdojo_app.model.AvCollection
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -11,4 +12,7 @@ interface AvgleApi {
     @GET("categories")
     // API 通信は必ず suspend
     suspend fun getAvCategories(): Response<AvCategory>
+
+    @GET("collections/1")
+    suspend fun getAvCollections(): Response<AvCollection>
 }
