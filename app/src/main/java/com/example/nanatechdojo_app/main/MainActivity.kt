@@ -40,19 +40,22 @@ class MainActivity : AppCompatActivity() {
 //        val scope = CoroutineScope(Dispatchers.IO)
 //        scope.launch {
         try {
-            service.getAvCategories().enqueue(object : Callback<AvCategory> {
-                override fun onResponse(call: Call<AvCategory>, response: Response<AvCategory>) {
-                    val avCategories = service.getAvCategories()
-                    val text1 = findViewById<TextView>(R.id.textView1)
-                    text1.text = avCategories.toString()
+            service.getAvCategories().enqueue(object : Callback<List<AvCategory>> {
+                override fun onResponse(
+                    call: Call<List<AvCategory>>,
+                    response: Response<List<AvCategory>>
+                ) {
+                    val avCategories = response.body() ?: return
+                    textView1.text = avCategories.toString()
                 }
 
-                override fun onFailure(call: Call<AvCategory>, t: Throwable) {
+                override fun onFailure(call: Call<List<AvCategory>>, t: Throwable) {
                     Log.d("MainActivity", "はずれ！")
                 }
             })
         } catch(e:Exception) {
-                textView1.text = "はずれ！"
+            Log.d("MainActivity", "はずれ！" + e.message)
+            textView1.text = "はずれ！"
         }
 //        }
     }
@@ -62,22 +65,22 @@ class MainActivity : AppCompatActivity() {
 //        val scope = CoroutineScope(Dispatchers.IO)
 //        scope.launch {
         try {
-            service.getAvCollections().enqueue(object : Callback<AvCollection> {
+            service.getAvCollections().enqueue(object : Callback<List<AvCollection.Response.Collection>> {
                 override fun onResponse(
-                    call: Call<AvCollection>,
-                    response: Response<AvCollection>
+                    call: Call<List<AvCollection.Response.Collection>>,
+                    response: Response<List<AvCollection.Response.Collection>>
                 ) {
-                    val avCollections = service.getAvCollections()
-                    val text2 = findViewById<TextView>(R.id.textView2)
-                    text2.text = avCollections.toString()
+                    val avCollections = response.body() ?: return
+                    textView2.text = avCollections.toString()
                 }
 
-                override fun onFailure(call: Call<AvCollection>, t: Throwable) {
+                override fun onFailure(call: Call<List<AvCollection.Response.Collection>>, t: Throwable) {
                     Log.d("MainActivity", "はずれ！")
                 }
             })
         } catch(e:Exception) {
-                textView2.text = "はずれ！"
+            Log.d("MainActivity", "はずれ！" + e.message)
+            textView2.text = "はずれ！"
         }
 //        }
     }
