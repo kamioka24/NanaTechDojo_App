@@ -8,13 +8,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class AvRepository {
     // Retrofit の実体化
-    val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+//    val moshi = Moshi.Builder()
+//        .add(KotlinJsonAdapterFactory())
+//        .build()
 
     fun getRetrofit() = Retrofit.Builder()
         .baseUrl(AvgleApi.BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addConverterFactory(MoshiConverterFactory.create())
         .build()
         .create(AvgleApi::class.java)
 }
